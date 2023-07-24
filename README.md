@@ -54,4 +54,4 @@ git checkout v1.2.0 \
 ./mconfig \
 cd ./builddir \
 make \
-sudo make install \
+sudo make install
