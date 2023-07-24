@@ -2,7 +2,7 @@
 ### Inherent Differences between HPC Systems and Enterprise Environments
 Many solutions are available to work with containers, for example Docker, one of the most popular platforms. However, the enterprise-based container frameworks were motivated to provide micro-services, a solution that fits well in the models of the industry, where system administrators with root privilege install and run applications, each in its own container. This is not so compatible with the workflow in the High-Performance Computing (HPC) and High Throughput Computing (HTC), in which usually complex applications run exhaustively using all the available resources and without any special privilege.
 
-## Targeted Toolsets Included in this Custom Image:
+## Targeted Toolsets Implemented
 #### Apache Tika™ - by Oracle
 #### Apptainer (formerly Singularity) - by Berkeley National Laboratory
 
