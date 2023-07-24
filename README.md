@@ -6,6 +6,9 @@ Many solutions are available to work with containers, for example Docker, one of
 #### Apache Tika™ - by Oracle
 #### Apptainer (formerly Singularity) - by Berkeley National Laboratory
 
+## Initial Cause for Solution Development
+**Problem:** 7.5 TB of digital forensics data produced/ stored in a variety of non-standard formats (digital forensics tools), which requires directory traversal, decompression, and file parsing. The parsing of all data is necessary to drive subsequent efforts wherein conjectures are made from the subsequent data parsed. 
+
 ## Why Apptainer for HPC instead of Virtual Machines or Docker
 #### Apptainer/Singularity is a container platform created for the HPC/HTC use case and presents key concepts for the scientific community:
 1. It’s designed to execute applications with bare-metal performance while retaining a high level of security, portability, and reproducibility.
@@ -19,7 +22,36 @@ Many solutions are available to work with containers, for example Docker, one of
 
 ![image](https://github.com/alexander-labarge/hpc-tika-build/assets/103531175/945a382c-3488-4c65-a743-44f0a704c7a5)
 
-## Initial Cause for Solution Development
-**Problem:** 7.5 TB of digital forensics data produced/ stored in a variety of non-standard formats (digital forensics tools), which requires directory traversal, decompression, and file parsing. The parsing of all data is necessary to drive subsequent efforts wherein conjectures are made from the subsequent data parsed. 
+_______________________________________________________________________
+## DEVELOPMENT STEPS:
+_______________________________________________________________________
 
-
+#### STEP 1: Apptainer - Build from Source/ Install debian packages for dependencies
+sudo apt-get install -y \
+    build-essential \
+    libseccomp-dev \
+    pkg-config \
+    uidmap \
+    squashfs-tools \
+    squashfuse \
+    fuse2fs \
+    fuse-overlayfs \
+    fakeroot \
+    cryptsetup \
+    curl wget git
+export GOVERSION=1.20.6 OS=linux ARCH=amd64 \
+wget -O /tmp/go${GOVERSION}.${OS}-${ARCH}.tar.gz \
+  https://dl.google.com/go/go${GOVERSION}.${OS}-${ARCH}.tar.gz \
+sudo tar -C /usr/local -xzf /home/service-typhon/Downloads/go${GOVERSION}.${OS}-${ARCH}.tar.gz \
+echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
+source ~/.bashrc \
+curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.51.1 \
+echo 'export PATH=$PATH:$(go env GOPATH)/bin' >> ~/.bashrc
+source ~/.bashrc \
+git clone https://github.com/apptainer/apptainer.git \
+cd apptainer \
+git checkout v1.2.0 \
+./mconfig \
+cd ./builddir \
+make \
+sudo make install \
