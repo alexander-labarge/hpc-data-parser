@@ -1,11 +1,18 @@
-# Overview - High-Performance Computing (HPC) and High Throughput Computing (HTC) Environment Containerized Direct Access to GPU & CPU Resources
-1. Many solutions are available to work with containers, for example Docker, one of the most popular platforms. However, the enterprise-based container frameworks were motivated to provide micro-services, a solution that fits well in the models of the industry, where system administrators with root privilege install and run applications, each in its own container. This is not so compatible with the workflow in the High-Performance Computing (HPC) and High Throughput Computing (HTC), in which usually complex applications run exhaustively using all the available resources and without any special privilege.
-   
-2. Apptainer/Singularity is a container platform created for the HPC/HTC use case and presents key concepts for the scientific community:
-Single-file based container images, facilitating the distribution, archiving and sharing. \
-Ability to run, and in modern systems also to be installed, without any root daemon or setuid privileges. This makes it safer for large computer centers with shared resources. \
-Preserves the permissions in the environment. The user outside the container can be the same user inside. \
-Simple integration with resource managers (SLURM in our case) and distributed computing frameworks because it runs as a regular application. 
+# High-Performance Computing (HPC) File Parsing Solution - Direct Access to GPU & CPU Resources
+
+**Intro:**
+
+Many solutions are available to work with containers, for example Docker, one of the most popular platforms. However, the enterprise-based container frameworks were motivated to provide micro-services, a solution that fits well in the models of the industry, where system administrators with root privilege install and run applications, each in its own container. This is not so compatible with the workflow in the High-Performance Computing (HPC) and High Throughput Computing (HTC), in which usually complex applications run exhaustively using all the available resources and without any special privilege.
+
+**Apptainer/Singularity is a container platform created for the HPC/HTC use case and presents key concepts for the scientific community:**
+
+1. It’s designed to execute applications with bare-metal performance while retaining a high level of security, portability, and reproducibility.
+2. Containers run rootless to prohibit privilege escalation.
+3. Able to Leverages GPUs, FPGAs, high-speed networks, and filesystems.
+4. Single-file based container images, facilitating the distribution, archiving and sharing.
+5. Ability to run, and in modern systems also to be installed, without any root daemon or setuid privileges. This makes it safer for large computer centers with shared resources.
+6. Preserves the permissions in the environment. The user outside the container can be the same user inside.
+7. Simple integration with resource managers (SLURM in our case) and distributed computing frameworks because it runs as a regular application. 
 
 # Overview
 **Problem:** 7.5 TB of digital forensics data produced/ stored in a variety of non-standard formats (digital forensics tools), which requires directory traversal, decompression, and file parsing. The parsing of all data is necessary to drive subsequent efforts wherein conjectures are made from the subsequent data parsed. 
