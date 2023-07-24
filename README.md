@@ -27,7 +27,7 @@ _______________________________________________________________________
 _______________________________________________________________________
 
 #### TEST HOST MACHINE (BARE METAL):
-![Screenshot from 2023-07-24 16-27-27](https://github.com/alexander-labarge/hpc-tika-build/assets/103531175/4ba650cf-aa42-49a1-812b-b7676807ac58)
+![image](https://github.com/alexander-labarge/hpc-tika-build/assets/103531175/0c14fa9e-2508-4c80-9883-f016eb70484f)
 
 #### STEP 1: Apptainer - Build from Source/ Install debian packages for dependencies
 sudo apt-get install -y \
