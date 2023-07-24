@@ -1,7 +1,4 @@
 # High-Performance Computing (HPC) File Parsing Solution - Direct Access to GPU & CPU Resources
-
-**Intro:**
-
 Many solutions are available to work with containers, for example Docker, one of the most popular platforms. However, the enterprise-based container frameworks were motivated to provide micro-services, a solution that fits well in the models of the industry, where system administrators with root privilege install and run applications, each in its own container. This is not so compatible with the workflow in the High-Performance Computing (HPC) and High Throughput Computing (HTC), in which usually complex applications run exhaustively using all the available resources and without any special privilege.
 
 **Apptainer/Singularity is a container platform created for the HPC/HTC use case and presents key concepts for the scientific community:**
