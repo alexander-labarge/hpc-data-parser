@@ -26,7 +26,7 @@ _______________________________________________________________________
 ## DEVELOPMENT STEPS:
 _______________________________________________________________________
 
-#### HOST MACHINE:
+#### TEST HOST MACHINE (BARE METAL):
 ![Screenshot from 2023-07-24 16-27-27](https://github.com/alexander-labarge/hpc-tika-build/assets/103531175/4ba650cf-aa42-49a1-812b-b7676807ac58)
 
 #### STEP 1: Apptainer - Build from Source/ Install debian packages for dependencies
