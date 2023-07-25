@@ -186,3 +186,5 @@ echo "$extracted_text"
 # Check Tika test
 check_tika_test
 ```
+### STEP 8: FINAL BETA BUILD SCRIPT (OTHER BASH SCRIPTS EMBEDDED)
+![image](https://github.com/alexander-labarge/hpc-tika-build/assets/103531175/71d64b44-a95e-484b-ad2d-082d3bc9ab60)
