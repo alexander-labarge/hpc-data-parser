@@ -1,35 +1,44 @@
 # High-Performance Computing (HPC) File Parsing Solution - Direct Access to GPU & CPU Resources
-### Inherent Differences between HPC Systems and Enterprise Environments
-Many solutions are available to work with containers, for example Docker, one of the most popular platforms. However, the enterprise-based container frameworks were motivated to provide micro-services, a solution that fits well in the models of the industry, where system administrators with root privilege install and run applications, each in its own container. This is not so compatible with the workflow in the High-Performance Computing (HPC) and High Throughput Computing (HTC), in which usually complex applications run exhaustively using all the available resources and without any special privilege.
+
+This solution provides direct access to GPU and CPU resources for high-performance computing (HPC) and high-throughput computing (HTC) environments. Unlike enterprise-based container frameworks, which are designed for microservices and require root privileges to install and run applications, this solution is optimized for complex applications that require all available resources without special privileges.
 
 ## Targeted Toolsets Implemented
-#### Apache Tika™ - by Oracle
-#### Apptainer (formerly Singularity) - by Berkeley National Laboratory
+
+This solution uses the following targeted toolsets:
+
+- Apache Tika™ by Oracle
+- Apptainer (formerly Singularity) by Berkeley National Laboratory
 
 ## Initial Cause for Solution Development
-**Problem:** 7.5 TB of digital forensics data produced/ stored in a variety of non-standard formats (digital forensics tools), which requires directory traversal, decompression, and file parsing. The parsing of all data is necessary to drive subsequent efforts wherein conjectures are made from the subsequent data parsed. 
+
+The development of this solution was motivated by the need to parse 7.5 TB of digital forensics data produced and stored in a variety of non-standard formats. The parsing of all data is necessary to drive subsequent efforts wherein conjectures are made from the subsequent data parsed.
 
 ## Why Apptainer for HPC instead of Virtual Machines or Docker
-#### Apptainer/Singularity is a container platform created for the HPC/HTC use case and presents key concepts for the scientific community:
+
+Apptainer/Singularity is a container platform created for the HPC/HTC use case and presents key concepts for the scientific community:
+
 1. It’s designed to execute applications with bare-metal performance while retaining a high level of security, portability, and reproducibility.
 2. Containers run rootless to prohibit privilege escalation.
-3. Able to Leverages GPUs, FPGAs, high-speed networks, and filesystems.
-4. A container platform for building and running Linux containers that packages software, libraries, and runtime compilers in a self-contained enviroment. Application portability (single image file, contain all dependencies) Reproducibility, run cross platform, provide support for legacy OS and apps.
+3. Able to Leverage GPUs, FPGAs, high-speed networks, and filesystems.
+4. A container platform for building and running Linux containers that packages software, libraries, and runtime compilers in a self-contained environment. 
+   - Application portability (single image file, contain all dependencies) 
+   - Reproducibility, run cross platform, provide support for legacy OS and apps.
 5. Ability to run, and in modern systems also to be installed, without any root daemon or setuid privileges. This makes it safer for large computer centers with shared resources.
 6. Preserves the permissions in the environment. The user outside the container can be the same user inside.
-7. Apptainer propagates most environment variables set on the host into the container, by default. Docker does not propagate any host environment variables into the container. Environment variables may change the behaviour of software.  
+7. Apptainer propagates most environment variables set on the host into the container, by default. Docker does not propagate any host environment variables into the container. Environment variables may change the behavior of software.  
 8. Simple integration with resource managers (SLURM in our case) and distributed computing frameworks because it runs as a regular application. 
 
 ![image](https://github.com/alexander-labarge/hpc-tika-build/assets/103531175/945a382c-3488-4c65-a743-44f0a704c7a5)
 
-_______________________________________________________________________
-## DEVELOPMENT STEPS:
-_______________________________________________________________________
+## Development Steps:
 
-#### TEST HOST MACHINE (BARE METAL):
+### Test Host Machine (Bare Metal):
+
 ![image](https://github.com/alexander-labarge/hpc-tika-build/assets/103531175/0c14fa9e-2508-4c80-9883-f016eb70484f)
 
-#### STEP 1: Apptainer - Build from Source/ Install debian packages for dependencies
+### Step 1: Apptainer - Build from Source/ Install Debian Packages for Dependencies
+
+```bash
 sudo apt-get install -y \
     build-essential \
     libseccomp-dev \
@@ -41,31 +50,31 @@ sudo apt-get install -y \
     fuse-overlayfs \
     fakeroot \
     cryptsetup \
-    curl wget git
-export GOVERSION=1.20.6 OS=linux ARCH=amd64 \
-wget -O /tmp/go${GOVERSION}.${OS}-${ARCH}.tar.gz \
-  https://dl.google.com/go/go${GOVERSION}.${OS}-${ARCH}.tar.gz \
-sudo tar -C /usr/local -xzf /home/service-typhon/Downloads/go${GOVERSION}.${OS}-${ARCH}.tar.gz \
-echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
-source ~/.bashrc \
-curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.51.1 \
-echo 'export PATH=$PATH:$(go env GOPATH)/bin' >> ~/.bashrc
-source ~/.bashrc \
-git clone https://github.com/apptainer/apptainer.git \
-cd apptainer \
-git checkout v1.2.0 \
-./mconfig \
-cd ./builddir \
-make \
-sudo make install
+    curl wget git \
+    export GOVERSION=1.20.6 OS=linux ARCH=amd64 \
+    wget -O /tmp/go${GOVERSION}.${OS}-${ARCH}.tar.gz \
+      https://dl.google.com/go/go${GOVERSION}.${OS}-${ARCH}.tar.gz \
+    sudo tar -C /usr/local -xzf /home/service-typhon/Downloads/go${GOVERSION}.${OS}-${ARCH}.tar.gz \
+    echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
+    source ~/.bashrc \
+    curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.51.1 \
+    echo 'export PATH=$PATH:$(go env GOPATH)/bin' >> ~/.bashrc
+    source ~/.bashrc \
+    git clone https://github.com/apptainer/apptainer.git \
+    cd apptainer \
+    git checkout v1.2.0 \
+    ./mconfig \
+    cd ./builddir \
+    make \
+    sudo make install
+```
 
-#### STEP 2: Create Sandbox Directory / Pull Ubuntu 22.04 - Jammy Docker Container (Base Ubuntu Build)
+### Step 2: Create Sandbox Directory / Pull Ubuntu 22.04 - Jammy Docker Container (Base Ubuntu Build)
 ![image](https://github.com/alexander-labarge/hpc-tika-build/assets/103531175/7aaf3e7e-cb74-40d1-9971-24808b0885f8)
 
-#### STEP 3: Convert to immutable .sif image for future builds - Demonstrate Shell Access
+### Step 3: Convert to Immutable .sif Image for Future Builds - Demonstrate Shell Access
 ![image](https://github.com/alexander-labarge/hpc-tika-build/assets/103531175/88b8bf10-0e96-4ad3-8d91-6135140e9a00)
 
-#### STEP 4: Now that there is a Base Apptainer, we need to bring in necessary dependencies to execute
+### Step 4: Now that There is a Base Apptainer, We Need to Bring in Necessary Dependencies to Execute
 
-
-#### STEP 5: Build Tika/ Configure Properly
+### Step 5: Build Tika/ Configure Properly
