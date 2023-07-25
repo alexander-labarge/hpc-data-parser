@@ -94,6 +94,43 @@ sudo apt-get install -y \
 ### Step 7: Build Tika/ Configure Properly - Completed/ Success:
 ![image](https://github.com/alexander-labarge/hpc-tika-build/assets/103531175/7c7320ab-999b-45b9-bd3c-beb8a19c1230)
 
+#### TIKA DEPENDENCY INSTALL SCRIPT IMPLEMENTED AT %POST
+
+```bash
+#!/bin/bash
+
+# Install Java
+apt-get update
+apt-get install -y software-properties-common
+apt-get install -y wget
+apt-get install -y default-jre
+
+# Install Tesseract OCR
+apt-get install -y tesseract-ocr
+
+# Install ImageMagick
+apt-get install -y imagemagick
+
+# Install Poppler
+apt-get install -y poppler-utils
+
+# Install FFmpeg
+apt-get install -y ffmpeg
+
+# Install Tika
+wget https://dlcdn.apache.org/tika/2.8.0/tika-app-2.8.0.jar
+
+# Install Maven
+wget https://dlcdn.apache.org/maven/maven-3/3.9.3/binaries/apache-maven-3.9.3-bin.tar.gz
+tar -xvf apache-maven-3.9.3-bin.tar.gz 
+mv apache-maven-3.9.3 /opt
+M2_HOME='opt/apache-maven-3.9.3/'
+PATH="$M2_HOME/bin:$PATH"
+export PATH
+```
+
+#### TIKA AUTOMATED TEST END OF INSTALL:
+
 ```bash
 #!/bin/bash
 
