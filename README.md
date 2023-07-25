@@ -65,4 +65,7 @@ sudo make install
 #### STEP 3: Convert to immutable .sif image for future builds - Demonstrate Shell Access
 ![image](https://github.com/alexander-labarge/hpc-tika-build/assets/103531175/88b8bf10-0e96-4ad3-8d91-6135140e9a00)
 
+#### STEP 4: Now that there is a Base Apptainer, we need to bring in necessary dependencies to execute
 
+
+#### STEP 5: Build Tika/ Configure Properly
