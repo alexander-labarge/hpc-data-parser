@@ -1,0 +1,59 @@
+Bootstrap: localimage
+From: ubuntu_jammy.sif
+Stage: build
+    
+%setup
+    apptainer verify ubuntu_jammy.sif
+    echo "Fingerprint Should be: 4A456127F258CA7C4BEB06469DB55C3B69A1FDEC"
+
+%labels
+    Author Alexander La Barge
+    Maintainer  alex@labarge.dev
+    URL https://www.labarge.dev
+
+%files
+    ./test.txt /opt
+
+%environment
+    export LISTEN_PORT=9998
+    export LC_ALL=C
+
+%post
+    echo "Installing required packages..."
+    apt-get update && apt-get -y upgrade
+    apt-get install -y netcat
+    NOW=`date`
+    echo "export NOW=\"${NOW}\""
+    mkdir -p /opt
+    echo "/opt created for software and add-on packages that are not part of the base installation"
+      
+%startscript
+    ip addr show
+
+%runscript
+    echo "Container was created $NOW" 
+    echo "Arguments received: $*"
+    exec echo "$@"
+
+%test
+    echo "Running tests..."
+    grep -q NAME=\"Ubuntu\" /etc/os-release
+    if [ $? -eq 0 ]; then
+        echo "Container base is Ubuntu as expected."
+    else
+        echo "Container base is not Ubuntu."
+        exit 1
+    fi
+
+%help
+    To run the container:
+	apptainer run <container_name.sif>
+
+    To shell into the container:
+	apptainer shell <container_name.sif>
+
+    To execute a custom command or app:
+	apptainer exec <container_name.sif> <command or app_name>
+
+    To view the container's metadata:
+	apptainer inspect <container_name.sif>

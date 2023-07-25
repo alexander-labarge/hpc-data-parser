@@ -1,5 +1,6 @@
 Bootstrap: localimage
-From: ~/hpc-tika-data-parser/base-image-ubuntu-22.04/ubuntu-22.04-base.0.1.0.sif 
+From: ubuntu-22.04-base.0.1.0.sif
+Fingerprints: 4A456127F258CA7C4BEB06469DB55C3B69A1FDEC
 
 %labels
     Author Alexander La Barge
