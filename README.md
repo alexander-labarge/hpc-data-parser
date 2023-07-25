@@ -58,3 +58,8 @@ git checkout v1.2.0 \
 cd ./builddir \
 make \
 sudo make install
+
+#### STEP 2: Create Sandbox Directory / Pull Ubuntu 22.04 - Jammy Docker Container (Base Ubuntu Build)
+![image](https://github.com/alexander-labarge/hpc-tika-build/assets/103531175/7aaf3e7e-cb74-40d1-9971-24808b0885f8)
+
+
