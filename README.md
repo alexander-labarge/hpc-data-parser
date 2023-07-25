@@ -85,7 +85,10 @@ sudo apt-get install -y \
 ![image](https://github.com/alexander-labarge/hpc-tika-build/assets/103531175/a45a0aed-0b5b-4cc9-abdb-5178ad5ac648)
 
 #### Note: Initial Containers are limited to 64MB in size. Fix:
-
 ![image](https://github.com/alexander-labarge/hpc-tika-build/assets/103531175/0f2b5e02-d8a1-42bc-995a-507b802c4c3a)
 
-### Step 6: Build Tika/ Configure Properly
+### Step 6: Create a New File System Overlay/ add as a layer in SIF build:
+
+![image](https://github.com/alexander-labarge/hpc-tika-build/assets/103531175/441d3a4a-18cd-4c74-8cf8-b7ffe18167eb)
+
+### Step 7: Build Tika/ Configure Properly
