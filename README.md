@@ -77,6 +77,8 @@ sudo apt-get install -y \
 
 ### Step 4: Definition File Configuration for Building Dependencies
 
+![image](https://github.com/alexander-labarge/hpc-tika-build/assets/103531175/0d3b4389-7329-4a06-b551-392b07586abc)
+
 ### Step 5: Now that There is a Base Apptainer, We Need to Bring in Necessary Dependencies to Execute
 
 ### Step 6: Build Tika/ Configure Properly
