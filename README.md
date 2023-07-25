@@ -62,6 +62,7 @@ sudo make install
 #### STEP 2: Create Sandbox Directory / Pull Ubuntu 22.04 - Jammy Docker Container (Base Ubuntu Build)
 ![image](https://github.com/alexander-labarge/hpc-tika-build/assets/103531175/7aaf3e7e-cb74-40d1-9971-24808b0885f8)
 
-#### STEP 3: Convert to immutable .sif image for future builds
-![image](https://github.com/alexander-labarge/hpc-tika-build/assets/103531175/793b1c4a-72dd-462f-8e4e-6d0da254affc)
+#### STEP 3: Convert to immutable .sif image for future builds - Demonstrate Shell Access
+![image](https://github.com/alexander-labarge/hpc-tika-build/assets/103531175/88b8bf10-0e96-4ad3-8d91-6135140e9a00)
+
 
