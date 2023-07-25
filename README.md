@@ -76,6 +76,7 @@ sudo apt-get install -y \
 ![image](https://github.com/alexander-labarge/hpc-tika-build/assets/103531175/88b8bf10-0e96-4ad3-8d91-6135140e9a00)
 
 ### Step 4: Definition File Configuration for Building Dependencies - 1st Build Scuccessful
+![image](https://github.com/alexander-labarge/hpc-tika-build/assets/103531175/ce94c114-8b0b-44b2-a7c0-33c26e4e36b7)
 
 ![image](https://github.com/alexander-labarge/hpc-tika-build/assets/103531175/0d3b4389-7329-4a06-b551-392b07586abc)
 
