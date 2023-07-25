@@ -75,10 +75,12 @@ sudo apt-get install -y \
 ### Step 3: Convert to Immutable .sif Image for Future Builds - Demonstrate Shell Access
 ![image](https://github.com/alexander-labarge/hpc-tika-build/assets/103531175/88b8bf10-0e96-4ad3-8d91-6135140e9a00)
 
-### Step 4: Definition File Configuration for Building Dependencies
+### Step 4: Definition File Configuration for Building Dependencies - 1st Build Scuccessful
 
 ![image](https://github.com/alexander-labarge/hpc-tika-build/assets/103531175/0d3b4389-7329-4a06-b551-392b07586abc)
 
-### Step 5: Now that There is a Base Apptainer, We Need to Bring in Necessary Dependencies to Execute
+### Step 5: Now that There is a Base Instance Working, lets create a live sandbox for testing from the image we just created:
+
+![image](https://github.com/alexander-labarge/hpc-tika-build/assets/103531175/a45a0aed-0b5b-4cc9-abdb-5178ad5ac648)
 
 ### Step 6: Build Tika/ Configure Properly
