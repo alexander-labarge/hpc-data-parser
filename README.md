@@ -91,4 +91,61 @@ sudo apt-get install -y \
 
 ![image](https://github.com/alexander-labarge/hpc-tika-build/assets/103531175/441d3a4a-18cd-4c74-8cf8-b7ffe18167eb)
 
-### Step 7: Build Tika/ Configure Properly
+### Step 7: Build Tika/ Configure Properly - Completed/ Success:
+![image](https://github.com/alexander-labarge/hpc-tika-build/assets/103531175/7c7320ab-999b-45b9-bd3c-beb8a19c1230)
+
+```bash
+#!/bin/bash
+
+function check_tika_test {
+    echo "======================================"
+    echo "Checking Tika test..."
+    echo "======================================"
+    if grep -q "TIKA PASSED TEST - ALEX" /output-files/tika-test-file.txt.json; then
+        echo "================================================================="
+        echo "================================================================="
+        echo "================================================================="
+        echo "Tika test passed. FOUND STRING: TIKA PASSED TEST - ALEX in file."
+        echo "================================================================="
+        echo "================================================================="
+        echo "================================================================="
+        echo "============TIKA HPC BUILD COMPLETING FINAL STEPS================"
+        echo "================================================================="
+        echo "================================================================="
+    else
+        echo "Tika test failed."
+    fi
+}
+
+echo "======================================"
+echo "Starting Tika... at $(date)"
+echo "======================================"
+echo "input-files directory contents:"
+cp /opt/tika-test-file.txt /input-files
+ls -l /input-files/
+java -jar /tika-app-2.8.0.jar -i /input-files -o /output-files -J
+echo "======================================"
+echo "Tika started."
+echo "Tika output complete."
+echo "======================================"
+echo "output-files directory contents:"
+ls -l /output-files
+echo "======================================"
+echo "Completed at: $(date)"
+echo "======================================"
+
+echo "======================================"
+echo "Extracting text from files..."
+echo "======================================"
+echo "======================================"
+echo "Extracted JSON OUTPUT:"
+
+# Extract text from files & ignore JSON text
+extracted_text=$(find /output-files -type f -exec strings {} \; | grep -vE '^{.*}$')
+
+# Print extracted text
+echo "$extracted_text"
+
+# Check Tika test
+check_tika_test
+```
