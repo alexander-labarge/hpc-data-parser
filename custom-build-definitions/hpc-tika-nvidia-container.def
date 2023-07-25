@@ -1,0 +1,42 @@
+Bootstrap: localimage
+From: ~/hpc-tika-data-parser/base-image-ubuntu-22.04/ubuntu-22.04-base.0.1.0.sif 
+
+%labels
+    Author Alexander La Barge
+    Maintainer  alex@labarge.dev
+    URL https://labarge.dev
+
+%files
+    ./hello_world.c /opt
+
+%environment
+    export PATH="$PATH:/opt"
+
+%post
+    echo "Installing required packages..."
+    apt-get update && apt-get -y upgrade
+    apt-get install -y gcc
+    apt-get clean
+    mkdir -p /opt
+    cd /opt && gcc -o hello_world.out hello_world.c
+
+%runscript
+    echo "The output of your program is:"
+    /opt/hello_world.out
+
+%test
+    /opt/hello_world.out
+
+%help
+    To run the container:
+	apptainer run <container_name.sif>
+
+    To shell into the container:
+	apptainer shell <container_name.sif>
+
+    To execute a custom command or app:
+	apptainer exec <container_name.sif> <command or app_name>
+
+    To view the container's metadata:
+	apptainer inspect <container_name.sif>
+

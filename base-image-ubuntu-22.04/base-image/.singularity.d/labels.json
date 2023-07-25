@@ -1,0 +1,10 @@
+{
+	"org.label-schema.build-arch": "amd64",
+	"org.label-schema.build-date": "Monday_24_July_2023_19:59:7_EDT",
+	"org.label-schema.schema-version": "1.0",
+	"org.label-schema.usage.apptainer.version": "1.2.1",
+	"org.label-schema.usage.singularity.deffile.bootstrap": "docker",
+	"org.label-schema.usage.singularity.deffile.from": "ubuntu:jammy",
+	"org.opencontainers.image.ref.name": "ubuntu",
+	"org.opencontainers.image.version": "22.04"
+}
