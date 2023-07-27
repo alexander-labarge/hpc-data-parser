@@ -1,5 +1,4 @@
 # High-Performance Computing (HPC) File Parsing Solution - Direct Access to GPU & CPU Resources
-## BETA: https://www.youtube.com/watch?v=ydeqGkDXK3w
 
 This solution provides direct access to GPU and CPU resources for high-performance computing (HPC) and high-throughput computing (HTC) environments. Unlike enterprise-based container frameworks, which are designed for microservices and require root privileges to install and run applications, this solution is optimized for complex applications that require all available resources without special privileges.
 
